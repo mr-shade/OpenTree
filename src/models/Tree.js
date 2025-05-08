@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const TreeSchema = new mongoose.Schema({
   owner: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     ref: 'User',
     required: true
   },

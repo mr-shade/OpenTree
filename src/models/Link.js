@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const LinkSchema = new mongoose.Schema({
   tree: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     ref: 'Tree',
     required: true
   },

@@ -41,7 +41,7 @@ export default function Footer() {
           <div>
             <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">Product</h3>
             <ul className="space-y-3">
-              {["Features", "Pricing", "Templates", "Customers", "Integrations"].map((item) => (
+              {["Features",   "Templates", "Customers", "Integrations"].map((item) => (
                 <li key={item}>
                   <Link href={`/${item.toLowerCase()}`} className="text-gray-600 hover:text-blue-600">
                     {item}
