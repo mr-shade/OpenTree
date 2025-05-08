@@ -13,28 +13,28 @@ export default function ProfilePage() {
   const router = useRouter();
   const { data: session, status } = useSession();
   const { toast } = useToast();
-  
+
   const [name, setName] = useState('');
   const [bio, setBio] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  
+
   useEffect(() => {
     if (status === 'loading') return;
-    
+
     if (!session) {
       router.push('/login');
       return;
     }
-    
+
     // Set initial values
     setName(session.user.name || '');
     setBio(session.user.bio || '');
   }, [session, status, router]);
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    
+
     try {
       const res = await fetch('/api/user/profile', {
         method: 'PUT',
@@ -46,11 +46,11 @@ export default function ProfilePage() {
           bio,
         }),
       });
-      
+
       if (!res.ok) {
         throw new Error('Failed to update profile');
       }
-      
+
       toast({
         title: 'Profile updated',
         description: 'Your profile has been updated successfully.',
@@ -66,7 +66,7 @@ export default function ProfilePage() {
       setIsLoading(false);
     }
   };
-  
+
   if (status === 'loading') {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
@@ -74,11 +74,14 @@ export default function ProfilePage() {
       </div>
     );
   }
-  
+
   return (
-    <div className="container mx-auto px-4 py-12 max-w-4xl">
-      <h1 className="text-3xl font-bold mb-8">Your Profile</h1>
-      
+    <div>
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-50">Your Profile</h1>
+        <p className="text-gray-600 dark:text-gray-400 mt-1">Manage your personal information</p>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="md:col-span-1">
           <Card>
@@ -99,7 +102,7 @@ export default function ProfilePage() {
             </CardContent>
           </Card>
         </div>
-        
+
         <div className="md:col-span-2">
           <Card>
             <CardHeader>
@@ -119,7 +122,7 @@ export default function ProfilePage() {
                     placeholder="Your name"
                   />
                 </div>
-                
+
                 <div className="space-y-2">
                   <label htmlFor="email" className="text-sm font-medium">
                     Email
@@ -134,7 +137,7 @@ export default function ProfilePage() {
                     Your email is managed by your Google account
                   </p>
                 </div>
-                
+
                 <div className="space-y-2">
                   <label htmlFor="bio" className="text-sm font-medium">
                     Bio
@@ -152,7 +155,7 @@ export default function ProfilePage() {
                   </p>
                 </div>
               </CardContent>
-              
+
               <CardFooter className="flex justify-end">
                 <Button type="submit" disabled={isLoading}>
                   {isLoading ? 'Saving...' : 'Save Changes'}
