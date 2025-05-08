@@ -2,14 +2,14 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-50 border-t border-gray-100 py-16 mt-auto">
+    <footer className="bg-gray-50 dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 py-16 mt-auto">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           <div className="space-y-4">
             <Link href="/" className="text-2xl font-bold text-blue-600 inline-block">
               OpenTree
             </Link>
-            <p className="text-gray-600">
+            <p className="text-gray-600 dark:text-gray-400">
               The open-source platform for creators to share everything with just one link.
             </p>
             <div className="flex space-x-4">
@@ -39,11 +39,11 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">Product</h3>
+            <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100 uppercase tracking-wider mb-4">Product</h3>
             <ul className="space-y-3">
               {["Features",   "Templates", "Customers", "Integrations"].map((item) => (
                 <li key={item}>
-                  <Link href={`/${item.toLowerCase()}`} className="text-gray-600 hover:text-blue-600">
+                  <Link href={`/${item.toLowerCase()}`} className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">
                     {item}
                   </Link>
                 </li>
@@ -52,11 +52,11 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">Resources</h3>
+            <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100 uppercase tracking-wider mb-4">Resources</h3>
             <ul className="space-y-3">
               {["Documentation", "Guides", "API", "Blog", "Community"].map((item) => (
                 <li key={item}>
-                  <Link href={`/${item.toLowerCase()}`} className="text-gray-600 hover:text-blue-600">
+                  <Link href={`/${item.toLowerCase()}`} className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">
                     {item}
                   </Link>
                 </li>
@@ -65,11 +65,11 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">Company</h3>
+            <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100 uppercase tracking-wider mb-4">Company</h3>
             <ul className="space-y-3">
               {["About", "Careers", "Privacy", "Terms", "Contact"].map((item) => (
                 <li key={item}>
-                  <Link href={`/${item.toLowerCase()}`} className="text-gray-600 hover:text-blue-600">
+                  <Link href={`/${item.toLowerCase()}`} className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">
                     {item}
                   </Link>
                 </li>
@@ -78,18 +78,18 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-500 text-sm">
+        <div className="border-t border-gray-200 dark:border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-gray-500 dark:text-gray-400 text-sm">
             &copy; {new Date().getFullYear()} OpenTree. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link href="/privacy" className="text-gray-500 hover:text-gray-900 text-sm">
+            <Link href="/privacy" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 text-sm">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="text-gray-500 hover:text-gray-900 text-sm">
+            <Link href="/terms" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 text-sm">
               Terms of Service
             </Link>
-            <Link href="/cookies" className="text-gray-500 hover:text-gray-900 text-sm">
+            <Link href="/cookies" className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 text-sm">
               Cookie Policy
             </Link>
           </div>
