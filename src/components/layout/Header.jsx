@@ -1,47 +1,94 @@
 import Link from 'next/link';
 import { getCurrentUser } from '@/lib/auth/session';
+import { Button } from '@/components/ui/button';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 export default async function Header() {
   const user = await getCurrentUser();
 
   return (
-    <header className="bg-white border-b border-gray-200 py-4">
+    <header className="border-b border-gray-100 py-4 sticky top-0 z-50 backdrop-blur-sm bg-white/90">
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <Link href="/" className="text-2xl font-bold text-blue-600">
-          OpenTree
-        </Link>
-        
-        <nav className="flex items-center gap-6">
-          <Link href="/" className="text-gray-600 hover:text-blue-600">
-            Home
+        <div className="flex items-center">
+          <Link href="/" className="text-2xl font-bold text-blue-600 mr-8">
+            OpenTree
           </Link>
-          
+
+          <nav className="hidden md:flex items-center space-x-6">
+            <Link href="/features" className="text-gray-600 hover:text-blue-600 text-sm font-medium">
+              Features
+            </Link>
+            <Link href="/pricing" className="text-gray-600 hover:text-blue-600 text-sm font-medium">
+              Pricing
+            </Link>
+            <Link href="/templates" className="text-gray-600 hover:text-blue-600 text-sm font-medium">
+              Templates
+            </Link>
+            <Link href="/blog" className="text-gray-600 hover:text-blue-600 text-sm font-medium">
+              Blog
+            </Link>
+          </nav>
+        </div>
+
+        <div className="flex items-center gap-4">
           {user ? (
             <>
-              <Link href="/dashboard" className="text-gray-600 hover:text-blue-600">
-                Dashboard
-              </Link>
-              <Link 
-                href="/api/auth/signout"
-                className="bg-gray-100 hover:bg-gray-200 text-gray-800 px-4 py-2 rounded-md"
-              >
-                Sign Out
-              </Link>
+              <Button asChild variant="ghost" className="hidden md:flex">
+                <Link href="/dashboard">Dashboard</Link>
+              </Button>
+
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="relative h-10 w-10 rounded-full">
+                    <Avatar className="h-10 w-10">
+                      <AvatarImage src={user.image || ''} alt={user.name} />
+                      <AvatarFallback className="bg-blue-100 text-blue-600">
+                        {user.name?.charAt(0) || 'U'}
+                      </AvatarFallback>
+                    </Avatar>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <DropdownMenuLabel>
+                    <div className="flex flex-col space-y-1">
+                      <p className="text-sm font-medium leading-none">{user.name}</p>
+                      <p className="text-xs leading-none text-gray-500">{user.email}</p>
+                    </div>
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link href="/dashboard">Dashboard</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/dashboard/settings">Settings</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link href="/api/auth/signout">Sign out</Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </>
           ) : (
             <>
-              <Link href="/login" className="text-gray-600 hover:text-blue-600">
-                Login
-              </Link>
-              <Link 
-                href="/signup"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md"
-              >
-                Sign Up
-              </Link>
+              <Button asChild variant="ghost" className="hidden md:flex">
+                <Link href="/login">Log in</Link>
+              </Button>
+
+              <Button asChild>
+                <Link href="/signup">Sign up</Link>
+              </Button>
             </>
           )}
-        </nav>
+        </div>
       </div>
     </header>
   );
