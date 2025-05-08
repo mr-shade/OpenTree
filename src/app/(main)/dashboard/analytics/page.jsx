@@ -25,7 +25,7 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip,
+  Tooltip as RechartsTooltip,
   Legend
 } from 'recharts';
 
@@ -176,7 +176,7 @@ export default async function AnalyticsPage() {
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
                 </Pie>
-                <Tooltip content={<CustomTooltip />} />
+                <RechartsTooltip content={<CustomTooltip />} />
                 <Legend />
               </RechartsPieChart>
             </ResponsiveContainer>
@@ -197,7 +197,7 @@ export default async function AnalyticsPage() {
                 <CartesianGrid strokeDasharray="3 3" className="stroke-gray-200 dark:stroke-gray-700" />
                 <XAxis dataKey="name" className="text-xs text-gray-600 dark:text-gray-400" />
                 <YAxis className="text-xs text-gray-600 dark:text-gray-400" />
-                <Tooltip content={<CustomTooltip />} />
+                <RechartsTooltip content={<CustomTooltip />} />
                 <Legend />
                 <Line type="monotone" dataKey="views" stroke="#3b82f6" activeDot={{ r: 8 }} />
                 <Line type="monotone" dataKey="clicks" stroke="#10b981" />

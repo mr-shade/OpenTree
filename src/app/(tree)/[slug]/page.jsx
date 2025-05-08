@@ -6,8 +6,8 @@ import User from '@/models/User';
 import TreePage from './TreePage';
 
 export async function generateMetadata({ params }) {
-  // Ensure params is properly awaited
-  const slug = params?.slug;
+  // Get the slug from params
+  const { slug } = params;
   const tree = await getTree(slug);
 
   if (!tree) {
@@ -78,8 +78,8 @@ async function getOwner(ownerId) {
 }
 
 export default async function TreePageWrapper({ params }) {
-  // Ensure params is properly awaited
-  const slug = params?.slug;
+  // Get the slug from params
+  const { slug } = params;
   const tree = await getTree(slug);
 
   if (!tree) {
